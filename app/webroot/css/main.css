@@ -1,0 +1,17 @@
+.contestant{
+	max-height:400px;
+	border:1px solid white;
+}
+
+.winner {
+	border:1px solid gold;
+}
+
+.panel {
+	width:400px;
+	float: left;
+}
+
+.hidden {
+	display: none;
+}

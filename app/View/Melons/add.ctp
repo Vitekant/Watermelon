@@ -1,0 +1,19 @@
+<div class="melons form">
+<?php echo $this->Form->create('Melon'); ?>
+	<fieldset>
+		<legend><?php echo __('Add Melon'); ?></legend>
+	<?php
+		echo $this->Form->input('path');
+	?>
+	</fieldset>
+<?php echo $this->Form->end(__('Submit')); ?>
+</div>
+<div class="actions">
+	<h3><?php echo __('Actions'); ?></h3>
+	<ul>
+
+		<li><?php echo $this->Html->link(__('List Melons'), array('action' => 'index')); ?></li>
+		<li><?php echo $this->Html->link(__('List Wins'), array('controller' => 'wins', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Win'), array('controller' => 'wins', 'action' => 'add')); ?> </li>
+	</ul>
+</div>
