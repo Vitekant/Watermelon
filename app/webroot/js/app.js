@@ -26,7 +26,17 @@ function reloadImages(data){
 function processVote(event){
 	showWinner(event);
 	submitResults(event);
-	setTimeout(function(){processFurther(event)},3000);
+	$('#timer').pietimer({
+	    seconds: 5,
+	    color: 'rgba(255, 255, 255, 0.8)',
+	    height: 40,
+	    width: 40
+	},
+	function(e){
+		processFurther(event)
+	});
+	$('#timer').pietimer('start');
+	//setTimeout(function(){processFurther(event)},5000);
 
 }
 
@@ -43,27 +53,45 @@ function submitResults(event){
 }
 
 function showResults(is_left_winner,data){
+	var sum = data.winner_count+data.looser_count;
 	if(is_left_winner){
-		$("#left_result").text(data.winner_count);
-		$("#right_result").text(data.looser_count);
+		$("#left_result").text(Math.round(data.winner_count/sum*100)+"%");
+		$("#left-cropper").css('height',Math.round((data.winner_count/sum)*400)+"px");
+		$("#right_result").text(Math.round(data.looser_count/sum*100)+"%");
+		$("#right-cropper").css('height',Math.round((data.looser_count/sum)*400)+"px");
+		$("#right").addClass('greyout');
 	}else{
-		$("#left_result").text(data.looser_count);
-		$("#right_result").text(data.winner_count);
+		$("#left_result").text(Math.round(data.looser_count/sum*100)+"%");
+		$("#left-cropper").css('height',Math.round((data.looser_count/sum)*400)+"px");
+		$("#right_result").text(Math.round(data.winner_count/sum*100)+"%");
+		$("#right-cropper").css('height',Math.round((data.winner_count/sum)*400)+"px");
+		$("#left").addClass('greyout');
 	}
 	$("#right_result").toggleClass('hidden');
 	$("#left_result").toggleClass('hidden');
+	$("#left-cropper").show();
+	$("#right-cropper").show();
+	//$("#left-cropper").show("slide", { direction: "up" }, 1000);
+	//$("#right-cropper").show("slide", { direction: "up" }, 1000);
 }
 
 function processFurther(event){
 	updateImages();
 	$("#right_result").toggleClass('hidden');
 	$("#left_result").toggleClass('hidden');
+	$("#left").removeClass('greyout');
+	$("#right").removeClass('greyout');
+	$("#left-cropper").hide();
+	$("#right-cropper").hide();
+	//$("#left-cropper").hide("slide", { direction: "down" }, 1000);
+	//$("#right-cropper").hide("slide", { direction: "down" }, 1000);
 	$(event.target).toggleClass('winner');
 	locked = false;
 }
 
 $('#left').click(function(e){if(!locked){processVote(e);};});
 $('#right').click(function(e){if(!locked){processVote(e);};});
+
 updateImages();
 });
 

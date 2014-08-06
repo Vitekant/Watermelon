@@ -76,6 +76,6 @@ class PagesController extends AppController {
 	}
 	
 	public function watermelon() {
-	
+		$this->set('title_for_layout','');
 	}
 }

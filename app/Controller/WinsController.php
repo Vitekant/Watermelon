@@ -134,12 +134,13 @@ class WinsController extends AppController {
 		$exists = $this->Win->find('count',array('conditions'=>array('winner_id'=>$looser_id,'looser_id'=>$winner_id)));
 
 		if($exists != 0) {
-			$looser = $this->Win->find('first',array('conditions'=>array('winner_id'=>$winner_id,'looser_id'=>$looser_id)))['Win'];
+			$looser = $this->Win->find('first',array('conditions'=>array('winner_id'=>$looser_id,'looser_id'=>$winner_id)))['Win'];
 			$looser_count = $looser['count'];
 		}else{
 			$looser_count = 0;
 		}
-		
+		$looser_count = (int)$looser_count;
+		$winner_count = (int)$winner_count;
 		$this->set(compact('winner_count','looser_count'));
         $this->set('_serialize', array('winner_count','looser_count'));
 	}

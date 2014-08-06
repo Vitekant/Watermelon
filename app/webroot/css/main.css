@@ -1,6 +1,14 @@
 .contestant{
-	max-height:400px;
+	max-height:500px;
 	border:1px solid white;
+}
+
+.greyout{
+	-webkit-filter: grayscale(100%);
+	-moz-filter: grayscale(100%);
+	-o-filter: grayscale(100%);
+	-ms-filter: grayscale(100%);
+	filter: grayscale(100%);	
 }
 
 .winner {
@@ -8,10 +16,70 @@
 }
 
 .panel {
-	width:400px;
-	float: left;
+	width:500px;
+	margin: 0 auto;
+	padding: 0;
+	#float: left;
+	display: inline-block; 
+	overflow: hidden;
 }
 
 .hidden {
 	display: none;
 }
+
+#body{
+	background: #2A242C;
+}
+
+#voting_area{
+	width: 1200px;
+	margin: 20px auto;	
+	overflow: hidden;
+	text-align: center;
+}
+
+.bar-wrapper{
+	position: relative;
+	display: inline-block; 
+	width: 40px;
+	height: 502px;
+}
+
+.contestant-image{
+	position: relative;
+	width: 400px;
+	height: 502px;
+	overflow: hidden;
+	text-align: center;
+	display: inline-block; 
+}
+
+.cropper{
+	border: 1px solid #414142;
+  position: absolute;
+  bottom: 30px;
+  left: 0px;
+  height: 400px;
+  width: 40px;
+  overflow: hidden;
+	
+	}
+
+
+.progress-bar{
+	position: absolute;
+	bottom: 0px;
+	width: 40px;
+	left: 0px;
+}
+
+.result-wrapper{
+	height:20px;
+	width:30px;
+	position: absolute;
+	bottom: 0px;
+	text-align: center;
+	padding: 5px;
+}
+	

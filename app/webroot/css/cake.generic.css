@@ -22,12 +22,17 @@
 }
 
 /** General Style Info **/
+html {
+	height: 100%;	
+}
+
 body {
-	background: #003d4c;
+	background: #A09EA0;
 	color: #fff;
 	font-family:'lucida grande',verdana,helvetica,arial,sans-serif;
 	font-size:90%;
 	margin: 0;
+	height: 100%;
 }
 a {
 	color: #003d4c;
@@ -79,6 +84,9 @@ p {
 
 #header{
 	padding: 10px 20px;
+	height: 130px;
+	align: bottom;
+	background: #313131;
 }
 #header h1 {
 	line-height:20px;
@@ -98,15 +106,21 @@ p {
 	text-decoration: underline;
 }
 #content{
-	background: #fff;
+	background: #;
 	clear: both;
 	color: #333;
 	padding: 10px 20px 40px 20px;
 	overflow: auto;
+	height: 100%;
 }
 #footer {
+	position: absolute;
+	bottom: 0;
 	clear: both;
-	padding: 6px 10px;
+	height: 60px;
+	width: 100%;
+	background: #313131;
+	padding: 10px 0px;
 }
 #header a, #footer a {
 	color: #fff;
