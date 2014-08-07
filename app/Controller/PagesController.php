@@ -74,8 +74,4 @@ class PagesController extends AppController {
 			throw new NotFoundException();
 		}
 	}
-	
-	public function watermelon() {
-		$this->set('title_for_layout','');
-	}
 }

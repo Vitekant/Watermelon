@@ -29,8 +29,8 @@ function processVote(event){
 	$('#timer').pietimer({
 	    seconds: 5,
 	    color: 'rgba(255, 255, 255, 0.8)',
-	    height: 40,
-	    width: 40
+	    height: 60,
+	    width: 60
 	},
 	function(e){
 		processFurther(event)

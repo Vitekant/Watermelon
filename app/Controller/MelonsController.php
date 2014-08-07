@@ -109,4 +109,26 @@ class MelonsController extends AppController {
 		$this->set(compact('left', 'right'));
         $this->set('_serialize', array('left', 'right'));
 	}
+	
+		
+	public function watermelon() {
+		$this->set('title_for_layout','');
+	}
+	
+	public function gettop10(){
+        $model = $this;
+        return Cache::remember('top_melons', function() use ($model){
+            $query = "SELECT * FROM melons AS Melon WHERE 1 ORDER BY ".
+				"(SELECT sum(count) FROM wins as b WHERE b.winner_id = Melon.id) ASC LIMIT 10;";
+			return $this->Melon->query($query);
+        }, 'long');
+	}
+	
+	public function top10()	{
+		$melons = $this->gettop10();
+		$this->set(compact('melons'));
+	}
+	
+
+	
 }

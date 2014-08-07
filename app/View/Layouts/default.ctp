@@ -29,7 +29,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		echo $this->Html->meta('icon');
 
 		echo $this->Html->css('cake.generic');
-
+		echo $this->Html->css('menu');
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
@@ -40,7 +40,15 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	<div id="container">
 		<div id="header">
 			<h1><?php //echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
-			<?php echo $this->Html->image('logo-edited.png');?>
+			<?php echo $this->Html->image('logo-edited.png', array("id"=>"logo"));?>
+			<div id='cssmenu'>
+<ul>
+   <li class='active'><a href='#'><span>Random</span></a></li>
+   <li><a href='#'><span>Top10</span></a></li>
+   <li><a href='#'><span>Upload</span></a></li>
+   <li class='last'><a href='#'><span>Contact</span></a></li>
+</ul>
+</div>
 		</div>
 		<div id="content">
 
