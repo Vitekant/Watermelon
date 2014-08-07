@@ -43,8 +43,26 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			<?php echo $this->Html->image('logo-edited.png', array("id"=>"logo"));?>
 			<div id='cssmenu'>
 <ul>
-   <li class='active'><a href='#'><span>Random</span></a></li>
-   <li><a href='#'><span>Top10</span></a></li>
+   <li id="menu-random" class='active'>
+	   <?php echo $this->Html->link(
+	    'Random',
+	    array(
+	        'controller' => 'melons',
+	        'action' => 'watermelon'
+	    	)
+		);
+			?>
+   </li>
+   <li id="menu-top10">	   
+   		<?php echo $this->Html->link(
+	    'Top10',
+	    array(
+	        'controller' => 'melons',
+	        'action' => 'top10'
+	    	)
+		);
+		?>
+	</li>
    <li><a href='#'><span>Upload</span></a></li>
    <li class='last'><a href='#'><span>Contact</span></a></li>
 </ul>

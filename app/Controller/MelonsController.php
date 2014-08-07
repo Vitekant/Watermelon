@@ -118,8 +118,11 @@ class MelonsController extends AppController {
 	public function gettop10(){
         $model = $this;
         return Cache::remember('top_melons', function() use ($model){
-            $query = "SELECT * FROM melons AS Melon WHERE 1 ORDER BY ".
-				"(SELECT sum(count) FROM wins as b WHERE b.winner_id = Melon.id) ASC LIMIT 10;";
+        	$query = "SELECT * FROM (SELECT a.id,a.path,b.score FROM melons AS a ".
+        	"INNER JOIN (SELECT winner_id,sum(count) as score FROM wins ".
+        	"GROUP BY winner_id) AS b ON b.winner_id = a.id ORDER BY score DESC ) AS Melon";
+            //$query = "SELECT * FROM melons AS Melon WHERE 1 ORDER BY ".
+			//	"(SELECT sum(count) FROM wins as b WHERE b.winner_id = Melon.id) DESC LIMIT 10;";
 			return $this->Melon->query($query);
         }, 'long');
 	}
