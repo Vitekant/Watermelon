@@ -30,10 +30,14 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
 		echo $this->Html->css('cake.generic');
 		echo $this->Html->css('menu');
+		echo $this->Html->css('jquery-ui');
+		echo $this->Html->css('jquery-ui.structure');
+		echo $this->Html->css('jquery-ui.theme');
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
 		echo $this->Html->script('jquery');
+		echo $this->Html->script('jquery-ui');
 	?>
 </head>
 <body>

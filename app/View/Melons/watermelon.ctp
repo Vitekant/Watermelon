@@ -12,7 +12,7 @@
 	<div class="bar-wrapper">
 	<div id="left-cropper" class="cropper hidden"><?php echo $this->Html->image('progress-bar.png', array('class'=>'progress-bar')); ?>
 	</div>
-	<div class="result-wrapper"><span id="left_result" class="hidden">test</span></div>
+	<div class="result-wrapper hidden"><span id="left_result">test</span>%</div>
 	</div>
 	<?php
 	//echo $this->Html->tag('span', '', array('id'=>'left_result','class' => 'result hidden'));
@@ -25,7 +25,7 @@
 	<div class="bar-wrapper">
 	<div id="right-cropper" class="cropper hidden"><?php echo $this->Html->image('progress-bar.png', array('class'=>'progress-bar')); ?>
 	</div>
-	<div class="result-wrapper"><span id="right_result" class="hidden">test</span></div>
+	<div class="result-wrapper hidden"><span id="right_result">test</span>%</div>
 	</div>
 	<div class="contestant-image"><?php
 	echo $this->Html->image('no.jpg', array('id' => 'right', 'class'=>'contestant'));
