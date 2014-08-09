@@ -110,3 +110,6 @@ $('#right').click(function(e){if(!locked){processVote(e);};});
 updateImages();
 });
 
+
+
+

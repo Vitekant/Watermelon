@@ -110,4 +110,39 @@
 	height: 60px;
 	width: 60px;
 }
+
+#file{
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+	border: 1px solid #313131;
+    border-radius: 6px;
+    background-color: #A09EA0;
+    text-align: center;
+    width:150px;
+    #height: 30px;
+    position: relative;
+  	overflow: hidden;
+  	cursor: pointer;
+}
+
+#file input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  opacity: 0;
+  -ms-filter: 'alpha(opacity=0)';
+  font-size: 200px;
+  direction: ltr;
+  cursor: pointer;
+  z-index:2;
+  opacity:1;
+  width: initial;
+}
+
+.fileicon{
+	float: left;	
+}
+}
 	

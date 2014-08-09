@@ -61,13 +61,22 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
    		<?php echo $this->Html->link(
 	    'Top10',
 	    array(
-	        'controller' => 'melons',
+	        'controller' => 'melons', 
 	        'action' => 'top10'
 	    	)
 		);
 		?>
 	</li>
-   <li><a href='#'><span>Upload</span></a></li>
+      <li id="menu-upload">	   
+   		<?php echo $this->Html->link(
+	    'Upload',
+	    array(
+	        'controller' => 'melons',
+	        'action' => 'upload'
+	    	)
+		);
+		?>
+	</li>
    <li class='last'><a href='#'><span>Contact</span></a></li>
 </ul>
 </div>

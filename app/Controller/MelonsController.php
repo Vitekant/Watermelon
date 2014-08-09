@@ -124,12 +124,17 @@ class MelonsController extends AppController {
             //$query = "SELECT * FROM melons AS Melon WHERE 1 ORDER BY ".
 			//	"(SELECT sum(count) FROM wins as b WHERE b.winner_id = Melon.id) DESC LIMIT 10;";
 			return $this->Melon->query($query);
-        }, 'long');
+        }, 'short');
 	}
 	
 	public function top10()	{
 		$melons = $this->gettop10();
 		$this->set(compact('melons'));
+	}
+	
+	
+	public function upload()	{
+		
 	}
 	
 
