@@ -1,11 +1,21 @@
 <script>$("li[id^='menu-']" ).removeClass('active'); $("#menu-upload").toggleClass('active');</script>
-<form action="">
-Name: <input type="text" name="user"><br>
-File: <div id="file"><span class="ui-button-icon-primary ui-icon ui-icon-plusthick fileicon"></span><span id="filetext" class="ui-button-text">
-                <span>Add files...</span>
-                
-            </span><input type="file" id="fileinput"></div>
+<form id="form" method="post" action="/melons/upload">
+Name: <input type="text" name="image_url"><br>
+File: 
+<span class="fileinput-button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button" aria-disabled="false">
+	<span class="ui-button-icon-primary ui-icon ui-icon-plusthick">
+	</span>
+	<span class="ui-button-text">
+		<span>Select image</span>
+	</span>
+	<input type="file" name="image_path">
+</span>
+
+<span id="upload" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary">Upload</span>
+
+</div>
 </form>
+
 <?php echo $this->Html->script('upload'); 
 		echo $this->Html->css('main');
 	?>

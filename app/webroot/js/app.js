@@ -12,7 +12,7 @@ function updateImages(){
 		async:false, 
 		dataType:"json", 
 		success:function (data, textStatus) {reloadImages(data);}, 
-		url:"\/watermelon\/melons\/random_pair.json"}
+		url:"\/melons\/random_pair.json"}
 		);
 }
 
@@ -48,7 +48,7 @@ function submitResults(event){
 		async:false, 
 		dataType:"json", 
 		success:function (data, textStatus) {showResults(is_left_winner,data);}, 
-		url:"\/watermelon\/wins\/results.json?winner="+winner_id+"&looser="+looser_id}
+		url:"\/wins\/results.json?winner="+winner_id+"&looser="+looser_id}
 		);
 }
 

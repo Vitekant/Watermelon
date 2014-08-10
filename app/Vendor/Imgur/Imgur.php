@@ -8,21 +8,27 @@
  */
 
 spl_autoload_register(function ($cname) {
-    require_once("classes/" . $cname . ".php");
-    throw new Exception("Class " . $cname . " failed to load. Please verify that you uploaded the files correctly.");
+	if (file_exists(dirname(__FILE__)."\\classes\\" . $cname . ".php")) {
+    	require_once(dirname(__FILE__)."\\classes\\" . $cname . ".php");
+	}else{
+		throw new Exception("Class " . $cname . " failed to load. Please verify that you uploaded the files correctly.");
+	}
 });
 
 class Imgur
 {
-
+	/**
+	 * @var bool|string
+	 */
+	protected $refresh_token = "f2e3a872d00a4c7e05c2f5f21cc05b286f062f80";
     /**
      * @var bool|string
      */
-    protected $api_key = "";
+    protected $api_key = "63d4a1e085330a0";
     /**
      * @var string
      */
-    protected $api_secret = "";
+    protected $api_secret = "e4b5ee41ce5a25922915d1ed92852640f911a558";
     /**
      * @var string
      */
@@ -42,13 +48,10 @@ class Imgur
      * @param string $api_secret
      * @throws
      */
-    function __construct($api_key, $api_secret)
+    function __construct()
     {
-        if (!$api_key || !$api_secret) throw Exception("Please provided API key data");
-
-        $this->api_key = $api_key;
-        $this->api_secret = $api_secret;
         $this->conn = new Connect($this->api_key, $this->api_secret);
+        $this->authorize($this->refresh_token);
     }
 
     /**

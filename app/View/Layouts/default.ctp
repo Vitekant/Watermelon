@@ -44,7 +44,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	<div id="container">
 		<div id="header">
 			<h1><?php //echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
-			<?php echo $this->Html->image('logo-edited.png', array("id"=>"logo"));?>
+			<?php echo $this->Html->image('logo.png', array("id"=>"logo"));?>
 			<div id='cssmenu'>
 <ul>
    <li id="menu-random" class='active'>

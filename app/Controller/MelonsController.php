@@ -1,5 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
+
 /**
  * Melons Controller
  *
@@ -13,7 +14,7 @@ class MelonsController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator','RequestHandler');
+	public $components = array('Paginator','RequestHandler', 'Session');
 
 /**
  * index method
@@ -134,7 +135,31 @@ class MelonsController extends AppController {
 	
 	
 	public function upload()	{
-		
+		if ($this->request->is('post')) {
+			require_once(App::path('Vendor')[0].'Imgur/Imgur.php');
+			$imgur = new Imgur();
+			if(!is_null($this->request->data('image_url'))){
+				$result = $imgur->upload()->url($this->request->data('image_url'));
+				$path = $result['data']['link'];
+				
+			}else if(!is_null($this->request->data('image_path'))){
+				$result = $imgur->upload()->file($this->request->data('image_path'));
+				$path = $result['data']['link'];	
+			}else{
+				$this->Session->setFlash(__('incorrect data.'));
+				return;
+			}
+			
+			$this->Melon->create();
+			$melon = array();
+			$melon['path'] = $path;
+			if ($this->Melon->save($melon)) {
+				$this->Session->setFlash(__('The melon has been saved.'));
+				//return $this->redirect(array('action' => 'watermelon'));
+			} else {
+				$this->Session->setFlash(__('The melon could not be saved. Please, try again.'));
+			}
+		}
 	}
 	
 

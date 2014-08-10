@@ -6,3 +6,7 @@ $('#fileinput').change(function(){
 $('#file').click(function(){
 	$('#fileinput').click();
 }).show();
+
+$( "#upload" ).click(function() {
+	  $( "#form" ).submit();
+	});

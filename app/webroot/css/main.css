@@ -125,7 +125,7 @@
   	overflow: hidden;
   	cursor: pointer;
 }
-
+/*
 #file input {
   position: absolute;
   top: 0;
@@ -140,9 +140,28 @@
   opacity:1;
   width: initial;
 }
-
+*/
 .fileicon{
 	float: left;	
 }
+
+#logo{
+	width: 420px;
+}
+
+.fileinput-button {
+  position: relative;
+  overflow: hidden;
+}
+.fileinput-button input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  opacity: 0;
+  -ms-filter: 'alpha(opacity=0)';
+  font-size: 200px;
+  direction: ltr;
+  cursor: pointer;
 }
 	
