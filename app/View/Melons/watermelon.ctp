@@ -1,7 +1,6 @@
 <script>$("li[id^='menu-']" ).removeClass('active'); $("#menu-random").toggleClass('active');</script>
 <?php echo $this->Html->script('app'); ?>
 <?php echo $this->Html->script('jquery.pietimer'); ?>
-<?php echo $this->Html->css('main'); ?>
 
 <div id="voting_area">
 <div id="left_panel" class="panel">

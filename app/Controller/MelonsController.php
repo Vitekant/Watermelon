@@ -138,12 +138,13 @@ class MelonsController extends AppController {
 		if ($this->request->is('post')) {
 			require_once(App::path('Vendor')[0].'Imgur/Imgur.php');
 			$imgur = new Imgur();
-			if(!is_null($this->request->data('image_url'))){
+			if(!is_null($this->request->data('image_url'))&&$this->request->data('image_url')!=''){
 				$result = $imgur->upload()->url($this->request->data('image_url'));
 				$path = $result['data']['link'];
 				
 			}else if(!is_null($this->request->data('image_path'))){
 				$result = $imgur->upload()->file($this->request->data('image_path'));
+				debug($result);
 				$path = $result['data']['link'];	
 			}else{
 				$this->Session->setFlash(__('incorrect data.'));

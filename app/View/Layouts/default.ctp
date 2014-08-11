@@ -30,6 +30,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
 		echo $this->Html->css('cake.generic');
 		echo $this->Html->css('menu');
+		echo $this->Html->css('main');
 		echo $this->Html->css('jquery-ui');
 		echo $this->Html->css('jquery-ui.structure');
 		echo $this->Html->css('jquery-ui.theme');
@@ -43,8 +44,16 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 <body>
 	<div id="container">
 		<div id="header">
-			<h1><?php //echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
-			<?php echo $this->Html->image('logo.png', array("id"=>"logo"));?>
+			<?php
+			$logo = $this->Html->image('logo.png', array("id"=>"logo"));
+			echo $this->Html->link($logo,
+			    array(
+			        'controller' => 'melons',
+			        'action' => 'watermelon'
+			    	),
+			    array('escape' => false)
+			);
+			?>
 			<div id='cssmenu'>
 <ul>
    <li id="menu-random" class='active'>
