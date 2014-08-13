@@ -86,7 +86,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		);
 		?>
 	</li>
-   <li class='last'><a href='#'><span>Contact</span></a></li>
+   <!--- <li class='last'><a href='#'><span>Contact</span></a></li> --->
 </ul>
 </div>
 		</div>

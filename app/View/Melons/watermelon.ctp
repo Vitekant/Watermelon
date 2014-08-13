@@ -3,9 +3,10 @@
 <?php echo $this->Html->script('jquery.pietimer'); ?>
 
 <div id="voting_area">
+
 <div id="left_panel" class="panel">
 	<div class="contestant-image"><?php 
-	echo $this->Html->image('yes.jpg', array('id' => 'left', 'class'=>'contestant'));
+	echo $this->Html->image('blank.png', array('id' => 'left', 'class'=>'contestant'));
 	echo $this->Form->hidden('left_hidden');
 	//echo "<br/>";?></div>
 	<div class="bar-wrapper">
@@ -17,9 +18,11 @@
 	//echo $this->Html->tag('span', '', array('id'=>'left_result','class' => 'result hidden'));
 	?>
 </div>
+
 <div id="timer_panel">
 	<div id="timer"></div>
 </div>
+
 <div id="right_panel" class="panel">
 	<div class="bar-wrapper">
 	<div id="right-cropper" class="cropper hidden"><?php echo $this->Html->image('progress-bar.png', array('class'=>'progress-bar')); ?>
@@ -27,7 +30,7 @@
 	<div class="result-wrapper hidden"><span id="right_result">test</span>%</div>
 	</div>
 	<div class="contestant-image"><?php
-	echo $this->Html->image('no.jpg', array('id' => 'right', 'class'=>'contestant'));
+	echo $this->Html->image('blank.png', array('id' => 'right', 'class'=>'contestant'));
 	echo $this->Form->hidden('right_hidden');
 	//echo "<br/>";?></div>
 

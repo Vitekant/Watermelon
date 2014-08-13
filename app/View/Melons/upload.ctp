@@ -1,6 +1,7 @@
 <script>$("li[id^='menu-']" ).removeClass('active'); $("#menu-upload").toggleClass('active');</script>
 <form id="form" method="post" action="/melons/upload">
-Name: <input type="text" name="image_url"><br>
+URL: <input type="text" name="image_url"><br>
+<!---
 File: 
 <span class="fileinput-button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button" aria-disabled="false">
 	<span class="ui-button-icon-primary ui-icon ui-icon-plusthick">
@@ -10,7 +11,7 @@ File:
 	</span>
 	<input type="file" name="image_path">
 </span>
-
+--->
 <span id="upload" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary">Upload</span>
 
 </div>
