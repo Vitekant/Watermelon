@@ -1,4 +1,5 @@
 <script>$("li[id^='menu-']" ).removeClass('active'); $("#menu-top10").toggleClass('active');</script>
+<?php echo $this->Html->css('top10'); ?>
 <div class="melons index">
 	<h2><?php echo __('Top10 Booties'); ?></h2>
 	<table cellpadding="0" cellspacing="0" id="top10table" width="600px">

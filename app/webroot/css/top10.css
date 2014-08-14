@@ -1,0 +1,6 @@
+@CHARSET "UTF-8";
+
+#top10table tr td img{
+	max-height:500px;
+	max-width: 400px;
+}
