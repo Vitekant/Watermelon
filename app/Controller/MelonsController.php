@@ -145,8 +145,8 @@ class MelonsController extends AppController {
 	
 	public function upload() {
 		if ($this->request->is ( 'post' )) {
-			require_once (App::path ( 'Vendor' ) . 'Imgur/Imgur.php');
-			require_once (App::path ( 'Vendor' ) . 'recaptchalib.php');
+			require_once (App::path ( 'Vendor' )[0] . 'Imgur/Imgur.php');
+			require_once (App::path ( 'Vendor' )[0] . 'recaptchalib.php');
 			
 			$privatekey = "6LeYy_gSAAAAAI_YMOYXPArhS9dnwjPpD9niL_Se";
 			$resp = recaptcha_check_answer ( $privatekey, $_SERVER ["REMOTE_ADDR"], $_POST ["recaptcha_challenge_field"], $_POST ["recaptcha_response_field"] );
