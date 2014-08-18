@@ -32,8 +32,10 @@
  * In development mode, you need to click the flash message to continue.
  */
 	//Configure::write('debug', 2);
-	if (file_exists('debug_config.php')) {
+	if (file_exists(dirname(__FILE__)."\\debug_config.php"))
+		{
 		include 'debug_config.php';
+		//Configure::write('debug', 2);
 	}else{
 		Configure::write('debug', 0);
 	}

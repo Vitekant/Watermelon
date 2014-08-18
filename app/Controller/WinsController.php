@@ -14,7 +14,7 @@ class WinsController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator','RequestHandler');
+	public $components = array('Paginator','RequestHandler','Session');
 
 /**
  * index method
@@ -114,7 +114,9 @@ class WinsController extends AppController {
 		//debug($this->request);
 		$winner_id = $this->request->query['winner'];
 		$looser_id = $this->request->query['looser'];
+		$canary = $this->request->query['canary'];
 		
+
 		$exists = $this->Win->find('count',array('conditions'=>array('winner_id'=>$winner_id,'looser_id'=>$looser_id)));
 
 		if($exists == 0) {
@@ -125,7 +127,13 @@ class WinsController extends AppController {
 			$winner_count = 1;
 		}else{
 			$win = $this->Win->find('first',array('conditions'=>array('winner_id'=>$winner_id,'looser_id'=>$looser_id)))['Win'];
-			$win['count'] = $win['count']+1;
+			
+			//check canary before changing wins value
+			if($canary == $this->Session->read('canary')){
+				$this->Session->delete('canary');
+				$win['count'] = $win['count']+1;
+			}
+			
 			$winner_count = $win['count'];
 		}
 		$this->Win->save($win);

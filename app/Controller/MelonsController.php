@@ -105,10 +105,19 @@ class MelonsController extends AppController {
 	
 	
 	public function random_pair(){
+		App::uses('String', 'Utility');
 		$left = $this->Melon->find('first', array('order' => array('rand()')))['Melon'];
 		$right = $this->Melon->find('first', array('conditions' => array('Melon.id !=' => $left['id']), 'order' => array('rand()')))['Melon'];
-		$this->set(compact('left', 'right'));
-        $this->set('_serialize', array('left', 'right'));
+		if(!$this->Session->check('canary')){
+			$bin_canary = openssl_random_pseudo_bytes(12);
+			$canary = bin2hex($bin_canary);
+			$this->Session->write('canary', $canary);
+		}
+		else{
+			$canary = $this->Session->read('canary');
+		}
+		$this->set(compact('left', 'right', 'canary'));
+        $this->set('_serialize', array('left', 'right', 'canary'));
 	}
 	
 		
@@ -134,32 +143,39 @@ class MelonsController extends AppController {
 		$this->set(compact('melons'));
 	}
 	
-	
-	public function upload()	{
-		if ($this->request->is('post')) {
-			require_once(App::path('Vendor')[0].'Imgur/Imgur.php');
-			$imgur = new Imgur();
-			if(!is_null($this->request->data('image_url'))&&$this->request->data('image_url')!=''){
-				$result = $imgur->upload()->url($this->request->data('image_url'));
-				$path = $result['data']['link'];
-				
-			}else if(!is_null($this->request->data('image_path'))){
-				$result = $imgur->upload()->file($this->request->data('image_path'));
-				debug($result);
-				$path = $result['data']['link'];	
-			}else{
-				$this->Session->setFlash(__('incorrect data.'));
-				return;
-			}
+	public function upload() {
+		if ($this->request->is ( 'post' )) {
+			require_once (App::path ( 'Vendor' ) . 'Imgur/Imgur.php');
+			require_once (App::path ( 'Vendor' ) . 'recaptchalib.php');
 			
-			$this->Melon->create();
-			$melon = array();
-			$melon['path'] = $path;
-			if ($this->Melon->save($melon)) {
-				$this->Session->setFlash(__('The melon has been saved.'));
-				//return $this->redirect(array('action' => 'watermelon'));
+			$privatekey = "6LeYy_gSAAAAAI_YMOYXPArhS9dnwjPpD9niL_Se";
+			$resp = recaptcha_check_answer ( $privatekey, $_SERVER ["REMOTE_ADDR"], $_POST ["recaptcha_challenge_field"], $_POST ["recaptcha_response_field"] );
+			
+			if (! $resp->is_valid) {
+				$this->Session->setFlash ( __ ( 'The reCAPTCHA wasn\'t entered correctly. Go back and try it again.' ) );
 			} else {
-				$this->Session->setFlash(__('The melon could not be saved. Please, try again.'));
+				$imgur = new Imgur ();
+				if (! is_null ( $this->request->data ( 'image_url' ) ) && $this->request->data ( 'image_url' ) != '') {
+					$result = $imgur->upload ()->url ( $this->request->data ( 'image_url' ) );
+					$path = $result ['data'] ['link'];
+				} else if (! is_null ( $this->request->data ( 'image_path' ) )) {
+					$result = $imgur->upload ()->file ( $this->request->data ( 'image_path' ) );
+					debug ( $result );
+					$path = $result ['data'] ['link'];
+				} else {
+					$this->Session->setFlash ( __ ( 'incorrect data.' ) );
+					return;
+				}
+				
+				$this->Melon->create ();
+				$melon = array ();
+				$melon ['path'] = $path;
+				if ($this->Melon->save ( $melon )) {
+					$this->Session->setFlash ( __ ( 'The melon has been saved.' ) );
+					// return $this->redirect(array('action' => 'watermelon'));
+				} else {
+					$this->Session->setFlash ( __ ( 'The melon could not be saved. Please, try again.' ) );
+				}
 			}
 		}
 	}

@@ -21,6 +21,7 @@ function reloadImages(data){
 	$("#left_hidden").attr("value",data.left.id);
 	$("#right").attr("src",data.right.path);
 	$("#right_hidden").attr("value",data.right.id);
+	$('#canary').attr("value",data.canary);
 }
 
 function processVote(event){
@@ -43,12 +44,13 @@ function processVote(event){
 function submitResults(event){
 	var winner_id = $("#"+event.target.id+"_hidden").val();
 	var looser_id = $("#left_hidden").val() == winner_id ? $("#right_hidden").val() : $("#left_hidden").val();
+	var canary = $('#canary').val();
 	var is_left_winner = $("#left_hidden").val() == winner_id;
 	$.ajax({
 		async:false, 
 		dataType:"json", 
 		success:function (data, textStatus) {showResults(is_left_winner,data);}, 
-		url:"\/wins\/results.json?winner="+winner_id+"&looser="+looser_id}
+		url:"\/wins\/results.json?winner="+winner_id+"&looser="+looser_id+"&canary="+canary}
 		);
 }
 

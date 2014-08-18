@@ -1,4 +1,5 @@
 <script>$("li[id^='menu-']" ).removeClass('active'); $("#menu-upload").toggleClass('active');</script>
+
 <form id="form" method="post" action="/melons/upload">
 URL: <input type="text" name="image_url"><br>
 <!---
@@ -12,6 +13,11 @@ File:
 	<input type="file" name="image_path">
 </span>
 --->
+<?php 
+	require_once(App::path('Vendor')[0].'recaptchalib.php'); 
+	$publickey = "6LeYy_gSAAAAAFqMiTdNxtMmNjIrQu-Yn6k9v-Im";
+	echo recaptcha_get_html($publickey);
+?>
 <span id="upload" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary">Upload</span>
 
 </div>

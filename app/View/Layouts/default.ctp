@@ -98,6 +98,11 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			<?php echo $this->fetch('content'); ?>
 		</div>
 		<div id="footer">
+			<div id="disclaimer">
+			All content presented in service is the sole responsibility of the person who uploaded it. <br/>
+			We may not monitor or control the content published via the service and, we cannot take responsibility. <br/>
+			If you believe that content in service infiringes your copyrights, please inform us.
+			</div>
 			<?php echo $this->Html->link(
 					$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
 					'http://www.cakephp.org/',
