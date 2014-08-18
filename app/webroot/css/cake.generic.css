@@ -474,7 +474,8 @@ p.error,
 .error-message {
 	clear: both;
 	color: #fff;
-	background: #c43c35;
+	/*background: #c43c35;
+	background: #361D3D;
 	border: 1px solid rgba(0, 0, 0, 0.5);
 	background-repeat: repeat-x;
 	background-image: -moz-linear-gradient(top, #ee5f5b, #c43c35);
@@ -482,8 +483,17 @@ p.error,
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#ee5f5b), to(#c43c35));
 	background-image: -webkit-linear-gradient(top, #ee5f5b, #c43c35);
 	background-image: -o-linear-gradient(top, #ee5f5b, #c43c35);
-	background-image: linear-gradient(top, #ee5f5b, #c43c35);
+	background-image: linear-gradient(top, #ee5f5b, #c43c35);*/
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
+	background: #361D3D;
+	border: 1px solid rgba(0, 0, 0, 0.5);
+	background-repeat: repeat-x;
+	background-image: -moz-linear-gradient(top, #562F61, #361D3D);
+	background-image: -ms-linear-gradient(top, #562F61, #361D3D);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#562F61), to(#361D3D));
+	background-image: -webkit-linear-gradient(top, #562F61, #361D3D);
+	background-image: -o-linear-gradient(top, #562F61, #361D3D);
+	background-image: linear-gradient(top, #562F61, #361D3D);
 }
 .success {
 	clear: both;

@@ -15,7 +15,7 @@ File:
 --->
 <?php 
 	require_once(App::path('Vendor')[0].'recaptchalib.php'); 
-	$publickey = "6LeYy_gSAAAAAFqMiTdNxtMmNjIrQu-Yn6k9v-Im";
+	$publickey = "6Leiy_gSAAAAANEgfvIHZCc1K7XfaL7N3TXeHNbT";
 	echo recaptcha_get_html($publickey);
 ?>
 <span id="upload" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary">Upload</span>

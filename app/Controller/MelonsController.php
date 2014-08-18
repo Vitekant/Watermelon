@@ -145,22 +145,25 @@ class MelonsController extends AppController {
 	
 	public function upload() {
 		if ($this->request->is ( 'post' )) {
-			require_once (App::path ( 'Vendor' )[0] . 'Imgur/Imgur.php');
+
 			require_once (App::path ( 'Vendor' )[0] . 'recaptchalib.php');
 			
-			$privatekey = "6LeYy_gSAAAAAI_YMOYXPArhS9dnwjPpD9niL_Se";
+			$privatekey = "6Leiy_gSAAAAAEldt0VswaZmRhuEs_w38f0Kyosa";
+			
+			
 			$resp = recaptcha_check_answer ( $privatekey, $_SERVER ["REMOTE_ADDR"], $_POST ["recaptcha_challenge_field"], $_POST ["recaptcha_response_field"] );
 			
-			if (! $resp->is_valid) {
-				$this->Session->setFlash ( __ ( 'The reCAPTCHA wasn\'t entered correctly. Go back and try it again.' ) );
+			if (!($resp->is_valid)) {
+				$this->Session->setFlash ( __ ( 'Incorrect reCAPTCHA . Try it again.' ) );
+				
 			} else {
+				require_once (App::path ( 'Vendor' )[0] . 'Imgur/Imgur.php');
 				$imgur = new Imgur ();
 				if (! is_null ( $this->request->data ( 'image_url' ) ) && $this->request->data ( 'image_url' ) != '') {
 					$result = $imgur->upload ()->url ( $this->request->data ( 'image_url' ) );
 					$path = $result ['data'] ['link'];
 				} else if (! is_null ( $this->request->data ( 'image_path' ) )) {
 					$result = $imgur->upload ()->file ( $this->request->data ( 'image_path' ) );
-					debug ( $result );
 					$path = $result ['data'] ['link'];
 				} else {
 					$this->Session->setFlash ( __ ( 'incorrect data.' ) );
