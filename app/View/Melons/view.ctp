@@ -11,6 +11,11 @@
 			<?php echo h($melon['Melon']['path']); ?>
 			&nbsp;
 		</dd>
+		<dt><?php echo __('Approved'); ?></dt>
+		<dd>
+			<?php echo h($melon['Melon']['approved']); ?>
+			&nbsp;
+		</dd>
 	</dl>
 </div>
 <div class="actions">

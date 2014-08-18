@@ -42,7 +42,5 @@
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('New Melon'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Wins'), array('controller' => 'wins', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Win'), array('controller' => 'wins', 'action' => 'add')); ?> </li>
 	</ul>
 </div>

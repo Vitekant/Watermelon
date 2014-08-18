@@ -5,6 +5,7 @@
 	<?php
 		echo $this->Form->input('id');
 		echo $this->Form->input('path');
+		echo $this->Form->input('approved');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
