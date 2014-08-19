@@ -16,6 +16,11 @@ class MelonsController extends AppController {
  */
 	public $components = array('Paginator', 'RequestHandler', 'Session');
 
+	
+	
+	public function beforeFilter() {
+		$this->Auth->allow('watermelon', 'random_pair', 'gettop10', 'top10', 'upload');
+	}
 /**
  * index method
  *
