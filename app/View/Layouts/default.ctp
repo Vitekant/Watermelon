@@ -41,6 +41,11 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		echo $this->Html->script('jquery-ui');
 		echo $this->Html->script('analytics');
 	?>
+	<script type="text/javascript">
+	 	var RecaptchaOptions = {
+	    theme : 'blackglass'
+		 };
+	 </script>
 </head>
 <body>
 	<div id="container">

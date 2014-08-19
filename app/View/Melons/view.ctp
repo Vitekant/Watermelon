@@ -8,7 +8,12 @@
 		</dd>
 		<dt><?php echo __('Path'); ?></dt>
 		<dd>
-			<?php echo h($melon['Melon']['path']); ?>
+			<?php echo $this->Html->Image($melon['Melon']['path'], array('class'=>'contestant')); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Approved'); ?></dt>
+		<dd>
+			<?php echo h($melon['Melon']['approved']); ?>
 			&nbsp;
 		</dd>
 	</dl>
@@ -30,7 +35,7 @@
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
 		<th><?php echo __('Id'); ?></th>
-		<th><?php echo __('Winer Id'); ?></th>
+		<th><?php echo __('Winner Id'); ?></th>
 		<th><?php echo __('Looser Id'); ?></th>
 		<th><?php echo __('Count'); ?></th>
 		<th class="actions"><?php echo __('Actions'); ?></th>
@@ -38,7 +43,7 @@
 	<?php foreach ($melon['Win'] as $win): ?>
 		<tr>
 			<td><?php echo $win['id']; ?></td>
-			<td><?php echo $win['winer_id']; ?></td>
+			<td><?php echo $win['winner_id']; ?></td>
 			<td><?php echo $win['looser_id']; ?></td>
 			<td><?php echo $win['count']; ?></td>
 			<td class="actions">

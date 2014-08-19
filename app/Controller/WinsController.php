@@ -16,6 +16,10 @@ class WinsController extends AppController {
  */
 	public $components = array('Paginator','RequestHandler','Session');
 
+	
+	public function beforeFilter() {
+		$this->Auth->allow('results');
+	}
 /**
  * index method
  *
