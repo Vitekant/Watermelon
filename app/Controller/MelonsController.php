@@ -14,12 +14,25 @@ class MelonsController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'RequestHandler', 'Session');
+	public $components = array('Paginator', 'RequestHandler');
 
 	
 	
 	public function beforeFilter() {
 		$this->Auth->allow('watermelon', 'random_pair', 'gettop10', 'top10', 'upload');
+	}
+	
+	
+	public function isAuthorized($user) {
+		// All registered users can add posts
+		switch($this->action){
+			case 'index':
+			case 'approve':
+			case 'view':
+				return true;
+			default:
+				return parent::isAuthorized($user);
+		}
 	}
 /**
  * index method
@@ -107,93 +120,35 @@ class MelonsController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
-
-/**
- * admin_index method
- *
- * @return void
- */
-	public function admin_index() {
-		$this->Melon->recursive = 0;
-		$this->set('melons', $this->Paginator->paginate());
-	}
-
-/**
- * admin_view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function admin_view($id = null) {
-		if (!$this->Melon->exists($id)) {
-			throw new NotFoundException(__('Invalid melon'));
-		}
-		$options = array('conditions' => array('Melon.' . $this->Melon->primaryKey => $id));
-		$this->set('melon', $this->Melon->find('first', $options));
-	}
-
-/**
- * admin_add method
- *
- * @return void
- */
-	public function admin_add() {
-		if ($this->request->is('post')) {
-			$this->Melon->create();
-			if ($this->Melon->save($this->request->data)) {
-				$this->Session->setFlash(__('The melon has been saved.'));
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The melon could not be saved. Please, try again.'));
-			}
-		}
-	}
-
-/**
- * admin_edit method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function admin_edit($id = null) {
-		if (!$this->Melon->exists($id)) {
-			throw new NotFoundException(__('Invalid melon'));
-		}
-		if ($this->request->is(array('post', 'put'))) {
-			if ($this->Melon->save($this->request->data)) {
-				$this->Session->setFlash(__('The melon has been saved.'));
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The melon could not be saved. Please, try again.'));
-			}
-		} else {
-			$options = array('conditions' => array('Melon.' . $this->Melon->primaryKey => $id));
-			$this->request->data = $this->Melon->find('first', $options);
-		}
-	}
-
-/**
- * admin_delete method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function admin_delete($id = null) {
+	
+	
+	
+	/**
+	 * approve melon
+	 *
+	 * @throws NotFoundException
+	 * @param string $id
+	 * @return void
+	 */
+	public function approve($id = null) {
 		$this->Melon->id = $id;
 		if (!$this->Melon->exists()) {
 			throw new NotFoundException(__('Invalid melon'));
 		}
-		$this->request->allowMethod('post', 'delete');
-		if ($this->Melon->delete()) {
-			$this->Session->setFlash(__('The melon has been deleted.'));
+		
+		$options = array('conditions' => array('Melon.' . $this->Melon->primaryKey => $id));
+		$melon = $this->Melon->find('first', $options);
+		$melon['Melon']['approved'] = true;
+		
+		if ($this->Melon->save($melon)) {
+			$this->Session->setFlash(__('The melon has been approved.'));
 		} else {
-			$this->Session->setFlash(__('The melon could not be deleted. Please, try again.'));
+			$this->Session->setFlash(__('The melon could not be approved. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		
+		return $this->redirect(array('action' => 'view', $id));
 	}
+	
 	
 	public function random_pair(){
 		App::uses('String', 'Utility');

@@ -8,14 +8,25 @@
 		</dd>
 		<dt><?php echo __('Path'); ?></dt>
 		<dd>
-			<?php echo $this->Html->Image($melon['Melon']['path'], array('class'=>'contestant')); ?>
+			<?php
+			$src = ltrim($melon['Melon']['path'],"img\/");
+			echo $this->Html->image($src, array('class'=>'contenstant'));
+			?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Approved'); ?></dt>
 		<dd>
-			<?php echo h($melon['Melon']['approved']); ?>
+			<?php 
+				if($melon['Melon']['approved']){
+					echo h(__('Approved')); 
+				}
+				else{
+					echo $this->Form->postLink(__('Approve'), array('action' => 'approve', $melon['Melon']['id']), array(), __('Are you sure you want to approve id=%s?', $melon['Melon']['id']));
+				}
+			?>
 			&nbsp;
 		</dd>
+		
 	</dl>
 </div>
 <div class="actions">
@@ -50,6 +61,7 @@
 				<?php echo $this->Html->link(__('View'), array('controller' => 'wins', 'action' => 'view', $win['id'])); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'wins', 'action' => 'edit', $win['id'])); ?>
 				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'wins', 'action' => 'delete', $win['id']), array(), __('Are you sure you want to delete # %s?', $win['id'])); ?>
+				
 			</td>
 		</tr>
 	<?php endforeach; ?>

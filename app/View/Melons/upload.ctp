@@ -1,7 +1,11 @@
 <script>$("li[id^='menu-']" ).removeClass('active'); $("#menu-upload").toggleClass('active');</script>
-
+<?php 		
+	echo $this->Html->css('main'); 
+	echo $this->Html->css('upload'); 
+?>
+<div id="upload-container">
 <form id="form" method="post" action="/melons/upload">
-URL: <input type="text" name="image_url"><br>
+<input type="text" name="image_url" id="image-url-input" value placeholder="Image URL"><br>
 <!---
 File: 
 <span class="fileinput-button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button" aria-disabled="false">
@@ -23,6 +27,9 @@ File:
 </div>
 </form>
 
-<?php echo $this->Html->script('upload'); 
-		echo $this->Html->css('main');
+	<?php 
+	echo $this->Html->script('upload');
+
 	?>
+	
+</div>

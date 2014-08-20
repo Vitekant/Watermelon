@@ -36,6 +36,7 @@ class AppController extends Controller {
 	
 	public $components = array (
 			'DebugKit.Toolbar',
+			'Session',
 			'Auth' => array (
 					'loginRedirect' => array (
 							'controller' => 'melons',
@@ -49,9 +50,18 @@ class AppController extends Controller {
 							'Form' => array (
 									'passwordHasher' => 'Blowfish' 
 							) 
-					) 
+					),
+					'authorize' => array('Controller')
 			) 
 	);
 	
-
+	public function isAuthorized($user) {
+		// Admin can access every action
+		if (isset($user['role']) && $user['role'] === 'admin') {
+			return true;
+		}
+	
+		// Default deny
+		return false;
+	}
 }
